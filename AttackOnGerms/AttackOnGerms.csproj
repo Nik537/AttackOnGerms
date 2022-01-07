@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FFF93F58-C6CC-48C1-B5A9-9A39A154BB35}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AttackOnGerms</RootNamespace>
+    <AssemblyName>AttackOnGerms</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <AndroidApplication>true</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AndroidStoreUncompressedFileExtensions>.m4a</AndroidStoreUncompressedFileExtensions>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\AnyCPU\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;ANDROID</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\AnyCPU\Release</OutputPath>
+    <DefineConstants>TRACE;ANDROID</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activity1.cs" />
+    <Compile Include="Game1.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Game1Folder\HumanPlayerFolder\Controls.cs" />
+    <Compile Include="Game1Folder\HumanPlayerFolder\Lives.cs" />
+    <Compile Include="Game1Folder\PhysicsFolder\Collisions.cs" />
+    <Compile Include="Game1Folder\RendererFolder\Bullet.cs" />
+    <Compile Include="Game1Folder\RendererFolder\Controller.cs" />
+    <Compile Include="Game1Folder\RendererFolder\Enemy.cs" />
+    <Compile Include="Game1Folder\RendererFolder\Renderer.cs" />
+    <Compile Include="Game1Folder\Gameplay.cs" />
+    <Compile Include="States\State.cs" />
+    <Compile Include="States\MenuState.cs" />
+    <Compile Include="Controls\Button.cs" />
+    <Compile Include="States\GameState.cs" />
+    <Compile Include="States\HighScoreState.cs" />
+    <Compile Include="States\Score.cs" />
+    <Compile Include="States\Component.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\Icon.png" />
+    <AndroidResource Include="Resources\Values\Strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Content.mgcb" />
+    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="Game1Folder\.DS_Store" />
+    <None Include="Content\bin\Android\Content\Atlas3.xnb" />
+    <None Include="Content\obj\Android\Content\.mgstats" />
+    <None Include="Content\obj\Android\Content\Atlas3.mgcontent" />
+    <None Include="Content\Explosion18enemy.xnb" />
+    <None Include="Content\Explosion23shield.xnb" />
+    <None Include="Content\Laser_Shoot19.xnb" />
+    <None Include="Content\Powerup3.xnb" />
+    <None Include="Content\Song.m4a" />
+    <None Include="Content\Song.xnb" />
+    <None Include="Content\ButtonFonts\Font.spritefont" />
+    <None Include="Content\obj\Android\ButtonFonts\background.mgcontent" />
+    <None Include="Content\obj\Android\Controls\button.mgcontent" />
+    <None Include="Content\Controls\button.xnb" />
+    <None Include="Content\ButtonFonts\background.xnb" />
+    <None Include="Content\bin\Android\Controls\button.xnb" />
+    <None Include="Content\bin\Android\ButtonFonts\background.xnb" />
+    <None Include="Content\bin\Android\ozadje.xnb" />
+    <None Include="Content\bin\Android\butt.xnb" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" Visible="false" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
+    <PackageReference Include="MonoGame.Framework.Android" Version="3.8.0.1641" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="States\" />
+    <Folder Include="Controls\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+</Project>
