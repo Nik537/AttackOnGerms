@@ -28,6 +28,7 @@ namespace AttackOnGerms.States
             if(score > HighscoresState.highScore)
             {
                 HighscoresState.highScore = score;
+                Game1.Save();
             }
         }
     }

@@ -13,6 +13,8 @@ using AttackOnGerms.States;
 using MonoGame;
 using System.ComponentModel;
 
+using System.Text.Json.Serialization;
+
 
 namespace AttackOnGerms.States
 {
@@ -92,7 +94,7 @@ namespace AttackOnGerms.States
                 component.Draw(gameTime, spriteBatch);
 
             var layer = Button.Layer;
-            spriteBatch.DrawString(font, "Highscore:\n" + highScore, new Vector2(400, 100), Color.Black, 0f, new Vector2(0, 0), 3f, SpriteEffects.None, layer + 0.01f);
+            spriteBatch.DrawString(font, "Highscore:\n" + Game1.Load(), new Vector2(400, 100), Color.Black, 0f, new Vector2(0, 0), 3f, SpriteEffects.None, layer + 0.01f);
 
             spriteBatch.End();
         }

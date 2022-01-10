@@ -12,13 +12,18 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 using AttackOnGerms.States;
 
+using System.Text.Json;
+using System.Diagnostics;
+using System.IO;
+using System.IO.IsolatedStorage;
+
+//using (var stream = Game.Activity.Assets.Open(document.json));
+
 namespace AttackOnGerms
 {
     public class Game1 : Game
     {
-        //11.15 vaje
-        //TODO matrix(screenSize) transform touch input v button in controlls
-        //TODO save highScore
+        
         public static GraphicsDeviceManager _graphics;
         public static SpriteBatch _spriteBatch;
 
@@ -54,6 +59,7 @@ namespace AttackOnGerms
         private State _currentState;
         private State _nextState;
 
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -62,17 +68,17 @@ namespace AttackOnGerms
 
         protected override void Initialize()
         {
-           
+
             _graphics.PreferredBackBufferWidth = 9;
             _graphics.PreferredBackBufferHeight = 16;
-          
+
             _graphics.ApplyChanges();
 
             scaleX = (float)GraphicsDevice.Viewport.Width / 1080;
             scaleY = (float)GraphicsDevice.Viewport.Height / 1920;
             matrix = Matrix.CreateScale(scaleX, scaleY, 1.0f);
 
-            
+
             matrix2 = Matrix.Invert(matrix);
 
             base.Initialize();
@@ -80,6 +86,7 @@ namespace AttackOnGerms
 
         protected override void LoadContent()
         {
+        
 
             atlas = Content.Load<Texture2D>("Atlas3");
             //song = Content.Load<Song>("Song");
@@ -106,7 +113,7 @@ namespace AttackOnGerms
         protected override void Update(GameTime gameTime)
         {
             {
-                if(_nextState != null)
+                if (_nextState != null)
                 {
                     _currentState = _nextState;
                     _currentState.LoadContent();
@@ -118,7 +125,7 @@ namespace AttackOnGerms
             }
             base.Update(gameTime);
 
-            
+
         }
 
         public void ChangeState(State state)
@@ -127,16 +134,41 @@ namespace AttackOnGerms
         }
 
         protected override void Draw(GameTime gameTime) //16:9
-        { 
+        {
             //createOrtographic camera
-           
+
             GraphicsDevice.Clear(Color.Black);
 
             _currentState.Draw(gameTime, _spriteBatch);
 
-           
+
             //var scl = (float) Math.Sqrt((GraphicsDevice.Viewport.Bounds.Width/1080)^2 + (GraphicsDevice.Viewport.Bounds.Height/1920)^2);
             base.Draw(gameTime);
         }
+        public static void Save()
+        {
+            IsolatedStorageFile savegameStorage = IsolatedStorageFile.GetUserStoreForApplication();
+            StreamWriter writer = new StreamWriter(new IsolatedStorageFileStream("HighScoreFile.txt", FileMode.OpenOrCreate, savegameStorage));
+            writer.WriteLine(HighscoresState.highScore);
+            writer.Close();
+        }
+
+        public static String Load()
+        {
+            IsolatedStorageFile savegameStorage = IsolatedStorageFile.GetUserStoreForApplication();
+            try
+            {
+                StreamReader reader = new StreamReader(new IsolatedStorageFileStream("HighScoreFile.txt", FileMode.Open, savegameStorage));
+                String content = reader.ReadToEnd();
+                reader.Close();
+                return content;
+            }
+            catch
+            {
+                return "The file was not found";
+            }
+        }
+
+        
     }
 }
