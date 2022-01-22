@@ -66,7 +66,7 @@ namespace AttackOnGerms.Controls
         {
             get
             {
-                return new Rectangle((int)Position.X - (int)Origin.X, (int)Position.Y - (int)Origin.Y, _texture.Width, _texture.Height);
+                return new Rectangle((int)Position.X - (int)Origin.X -30, (int)Position.Y - (int)Origin.Y, _texture.Width, _texture.Height);
             }
         }
 
@@ -92,7 +92,7 @@ namespace AttackOnGerms.Controls
                 var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
                 var y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
 
-                spriteBatch.DrawString(_font, Text, new Vector2(x -50, y), Color.Black, 0f, new Vector2(0, 0), 3f, SpriteEffects.None, Layer + 0.01f);
+                spriteBatch.DrawString(_font, Text, new Vector2(x -50, y-10), Color.White, 0f, new Vector2(0, 0), 3f, SpriteEffects.None, Layer + 0.01f);
             }
         }
 

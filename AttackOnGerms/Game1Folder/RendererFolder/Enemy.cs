@@ -20,6 +20,12 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
         public Color color;
         public Boolean dead;
         public int worth;
+        //public AnimatedSprite anim;
+
+        //player animation
+        public float FrameIndex { get; set; } //pick one of the animation frames from a list
+        public float AnimationSpeed { get; set; }//how fast the animations updates
+        //public string EnemyStatus { get; set; } //pove a se player premika al stoji, skace itd
 
         virtual public void enemyUpdate(GameTime gameTime)
         {
@@ -31,6 +37,22 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
         {
 
         }
+
+        public Rectangle animate(Rectangle sprite1, Rectangle sprite2)
+        {
+            List<Rectangle> animation = new List<Rectangle>();
+            animation.Add(sprite1);
+            animation.Add(sprite2);
+
+            //loop over the frame index
+            FrameIndex += AnimationSpeed;
+            if (FrameIndex >= animation.Count)
+                FrameIndex = 0f;
+
+
+            return animation[(int)FrameIndex];
+        }
+
     }
 
     public class YellowEnemy : Enemy
@@ -38,9 +60,9 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
         public YellowEnemy()
         {
             Random rand = new Random();
-            position = new Vector2(rand.Next(100, 1080-100), -200);
+            position = new Vector2(rand.Next(100, 1080-100), -100);
             speed = 40;
-            hp = 50;
+            hp = 26;
             dropsGift = true;
             radius = 206;
             rotation = 0;
@@ -69,25 +91,49 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
     }
     public class BlueEnemy : Enemy
     {
+        
+
         public BlueEnemy()
         {
             Random rand = new Random();
-            position = new Vector2(rand.Next(100, 1080 - 200), -200);
+            position = new Vector2(rand.Next(100, 1080 - 200), -100);
             speed = 90;
-            hp = 25;
+            hp = 10;
             dropsGift = false;
             radius = 206;
             rotation = 0;
             color = Color.White;
             worth = 5;
             dead = false;
+
+            FrameIndex = 0f;
+            //EnemyStatus = "idle1";
+            AnimationSpeed = 0.10f;
+
+        }
+
+        public Rectangle animate(Rectangle sprite1, Rectangle sprite2)
+        {
+            List<Rectangle> animation = new List<Rectangle>();
+            animation.Add(sprite1);
+            animation.Add(sprite2);
+
+            //loop over the frame index
+            FrameIndex += AnimationSpeed;
+            if (FrameIndex >= animation.Count)
+                FrameIndex = 0f;
+
+
+            return animation[(int)FrameIndex];
         }
 
         public override void enemyUpdate(GameTime gameTime)
         {
+           
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             position.Y += speed * dt;
             rotation += (float)0.04;
+            //animate();
         }
     }
     public class GreenEnemy : Enemy
@@ -95,15 +141,32 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
         public GreenEnemy()
         {
             Random rand = new Random();
-            position = new Vector2(rand.Next(300, 1080 - 300), -200);
-            speed = 160;
-            hp = 5;
+            position = new Vector2(rand.Next(50, 1080 - 50), -100);
+            speed = 140;
+            hp = 3;
             dropsGift = false;
             radius = 206;
             rotation = 0;
             color = Color.White;
             worth = 1;
             dead = false;
+
+            AnimationSpeed = 0.10f;
+        }
+
+        public Rectangle animate(Rectangle sprite1, Rectangle sprite2)
+        {
+            List<Rectangle> animation = new List<Rectangle>();
+            animation.Add(sprite1);
+            animation.Add(sprite2);
+
+            //loop over the frame index
+            FrameIndex += AnimationSpeed;
+            if (FrameIndex >= animation.Count)
+                FrameIndex = 0f;
+
+
+            return animation[(int)FrameIndex];
         }
 
         public override void enemyUpdate(GameTime gameTime)
@@ -112,7 +175,7 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
             float scaleX = (float)Math.Sin(-1 * Game1.gunRotation);
             //float scaleY = (float)Math.Cos(-1 * Game1.gunRotation);
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (position.X < 1050 && position.X > 50)
+            if (position.X < 1030 && position.X > 50)
             {
                 System.Console.WriteLine(Game1.gunRotation);
                 if (Game1.gunRotation < 0) position.X += speed * dt;

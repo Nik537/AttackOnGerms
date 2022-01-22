@@ -59,10 +59,13 @@ namespace AttackOnGerms
         private State _currentState;
         private State _nextState;
 
+        //public static Texture2D blueEnemytex;
+
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+           
             Content.RootDirectory = "Content";
         }
 
@@ -84,11 +87,24 @@ namespace AttackOnGerms
             base.Initialize();
         }
 
+        /*
+        public static Texture2D CreateTexture(Texture2D src, Rectangle rect)
+        {
+            //Texture2D tex = new Texture2D(GraphicsDevice, rect.Width, rect.Height);
+            Texture2D tex = blueEnemytex; 
+            int count = rect.Width * rect.Height;
+            Color[] data = new Color[count];
+            src.GetData(0, rect, data, 0, count);
+            tex.SetData(data);
+            return blueEnemytex;
+        }
+        */
+
         protected override void LoadContent()
         {
-        
 
-            atlas = Content.Load<Texture2D>("Atlas3");
+            //blueEnemytex = new Texture2D(GraphicsDevice, 644, 1000);
+            atlas = Content.Load<Texture2D>("Atlas4");
             //song = Content.Load<Song>("Song");
 
             song = Content.Load<Song>("Song");
@@ -102,6 +118,7 @@ namespace AttackOnGerms
             shieldExplosionSound = Content.Load<SoundEffect>("Explosion23shield");
             powerUpSound = Content.Load<SoundEffect>("Powerup3");
 
+            
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -165,7 +182,7 @@ namespace AttackOnGerms
             }
             catch
             {
-                return "The file was not found";
+                return "0";
             }
         }
 

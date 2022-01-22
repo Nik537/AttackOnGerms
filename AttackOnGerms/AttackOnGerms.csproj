@@ -71,6 +71,8 @@
     <Compile Include="States\HighScoreState.cs" />
     <Compile Include="States\Score.cs" />
     <Compile Include="States\Component.cs" />
+    <Compile Include="Game1Folder\RendererFolder\AnimatedSprite.cs" />
+    <Compile Include="Game1Folder\RendererFolder\Gift.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Drawable\Icon.png" />
@@ -92,12 +94,11 @@
     <None Include="Content\ButtonFonts\Font.spritefont" />
     <None Include="Content\obj\Android\ButtonFonts\background.mgcontent" />
     <None Include="Content\obj\Android\Controls\button.mgcontent" />
-    <None Include="Content\Controls\button.xnb" />
     <None Include="Content\ButtonFonts\background.xnb" />
-    <None Include="Content\bin\Android\Controls\button.xnb" />
     <None Include="Content\bin\Android\ButtonFonts\background.xnb" />
     <None Include="Content\bin\Android\ozadje.xnb" />
-    <None Include="Content\bin\Android\butt.xnb" />
+    <None Include="Content\bin\Android\Atlas4.xnb" />
+    <None Include="Content\bin\Android\Controls\button4.xnb" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" Visible="false" />
@@ -108,10 +109,14 @@
     <PackageReference Include="System.Text.Json">
       <Version>6.0.1</Version>
     </PackageReference>
+    <PackageReference Include="MonoGame.Extended">
+      <Version>3.8.0</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="States\" />
     <Folder Include="Controls\" />
+    <Folder Include="Content\Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

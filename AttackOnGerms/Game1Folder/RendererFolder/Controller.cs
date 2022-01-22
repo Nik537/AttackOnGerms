@@ -17,16 +17,18 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
         public List<Bullet> bullets = new List<Bullet>(100);
         public static List<Enemy> enemies = new List<Enemy>(0);
 
-        public double timer = 2D;
-        public float rofUpgrade = 0.2F;
+        public static double timer = 2D;
+        public static float rofUpgrade = 0.2F;
 
-        public double yellowEnemyTimer = 24D;
-        public double greenEnemyTimer = 4D;
-        public double blueEnemyTimer = 12D;
+        public static bool first = true;
 
-        public double maxYellowTime = 24D;
-        public double maxGreenTime = 4D;
-        public double maxBlueTime = 12D;
+        public static double yellowEnemyTimer = 24D;
+        public static double greenEnemyTimer = 4D;
+        public static double blueEnemyTimer = 12D;
+
+        public static double maxYellowTime = 24D;
+        public static double maxGreenTime = 4D;
+        public static double maxBlueTime = 12D;
 
         public void controllerUpdate(GameTime gameTime, Vector2 gunPosition, float gunRotation, SoundEffect soundEffect)
         {
@@ -35,7 +37,13 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
             greenEnemyTimer -= gameTime.ElapsedGameTime.TotalSeconds;
             blueEnemyTimer -= gameTime.ElapsedGameTime.TotalSeconds;
 
-
+            if (first)
+            {
+                enemies.Add(new GreenEnemy());
+                enemies.Add(new BlueEnemy());
+                Gameplay.timer = 0d;
+                first = false;
+            }
 
             if (timer <= 0) //BULLETS
             {
@@ -74,7 +82,7 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
                 enemies.Add(new BlueEnemy());
                 //blueEnemyTimer = 6D;
                 blueEnemyTimer = maxBlueTime;
-                if (maxBlueTime > 3)
+                if (maxBlueTime > 2)
                 {
                     maxBlueTime -= 0.05;
                 }

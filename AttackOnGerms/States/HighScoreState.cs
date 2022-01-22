@@ -30,14 +30,14 @@ namespace AttackOnGerms.States
 
         public HighscoresState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content) : base(game, graphicsDevice, content)
         {
-            var buttonTexture = _content.Load<Texture2D>("Controls/button");
+            var buttonTexture = _content.Load<Texture2D>("button4");
             var buttonFont = _content.Load<SpriteFont>("ButtonFonts/Font");
             menuBackGroundTexture = _content.Load<Texture2D>("ozadje");
 
             var replayButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(200, 1600),
-                Text = "Play",
+                Position = new Vector2(280, 1600),
+                Text = "   Play",
             };
 
             replayButton.Click += Button_Replay_Click;
@@ -45,7 +45,7 @@ namespace AttackOnGerms.States
             var mainMenuButton = new Button(buttonTexture, buttonFont)
             {
                 Position = new Vector2(800, 1600),
-                Text = "Main Menu",
+                Text = " Main Menu",
             };
 
             mainMenuButton.Click += Button_MainMenu_Click;
@@ -88,13 +88,13 @@ namespace AttackOnGerms.States
         {
             spriteBatch.Begin(SpriteSortMode.FrontToBack, transformMatrix: Game1.matrix);
 
-            spriteBatch.Draw(menuBackGroundTexture, new Vector2(0, 0), Color.White);
+            spriteBatch.Draw(menuBackGroundTexture, new Vector2(0, 0), Color.Purple);
 
             foreach (var component in components)
                 component.Draw(gameTime, spriteBatch);
 
             var layer = Button.Layer;
-            spriteBatch.DrawString(font, "Highscore:\n" + Game1.Load(), new Vector2(400, 100), Color.Black, 0f, new Vector2(0, 0), 3f, SpriteEffects.None, layer + 0.01f);
+            spriteBatch.DrawString(font, "Highscore: " + Game1.Load(), new Vector2(300, 300), Color.White, 0f, new Vector2(0, 0), 4f, SpriteEffects.None, layer + 0.01f);
 
             spriteBatch.End();
         }

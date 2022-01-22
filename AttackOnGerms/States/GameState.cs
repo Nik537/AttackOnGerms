@@ -97,6 +97,31 @@ namespace AttackOnGerms.States
 
         public override void Update(GameTime gameTime)
         {
+            if (Lives.lives == 0)
+            {
+               
+
+                System.Threading.Thread.Sleep(2000);
+                Lives.lives = 3;
+                Score.score = 0;
+                Controller.first = true;
+                Controller.enemies.Clear();
+                Controller.timer = 2D;
+                Controller.rofUpgrade = 0.2F;
+
+                Controller.yellowEnemyTimer = 24D;
+                Controller.greenEnemyTimer = 4D;
+                Controller.blueEnemyTimer = 12D;
+
+                Controller.maxYellowTime = 24D;
+                Controller.maxGreenTime = 4D;
+                Controller.maxBlueTime = 12D;
+
+
+        //Game1 game = new Game1();
+        //game.Reset();
+        _game.ChangeState(new MenuState(_game, _graphicsDevice, _content));
+            }
             Gameplay.updateGame(gameTime);
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
             {

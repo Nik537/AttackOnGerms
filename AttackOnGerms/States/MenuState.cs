@@ -30,20 +30,20 @@ namespace AttackOnGerms.States
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
       : base(game, graphicsDevice, content)
         {
-            var buttonTexture = _content.Load<Texture2D>("Controls/button");
+            var buttonTexture = _content.Load<Texture2D>("button4");
             buttonFont = _content.Load<SpriteFont>("ButtonFonts/Font");
 
             var newGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(500, 400),
-                Text = "Play",
+                Position = new Vector2(540, 400),
+                Text = "   Play",
             };
 
             newGameButton.Click += Button_NewGame_Click;
 
             var highScoresButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(500, 900),
+                Position = new Vector2(540, 900),
                 Text = "High Scores",
             };
 
@@ -51,8 +51,8 @@ namespace AttackOnGerms.States
 
             var quitGameButton = new Button(buttonTexture, buttonFont)
             {
-                Position = new Vector2(500, 1400),
-                Text = "Quit Game",
+                Position = new Vector2(540, 1400),
+                Text = " Quit Game",
             };
 
             quitGameButton.Click += Button_Quit_Clicked;
@@ -96,7 +96,7 @@ namespace AttackOnGerms.States
         {
             spriteBatch.Begin(transformMatrix: Game1.matrix);
 
-            spriteBatch.Draw(menuBackGroundTexture, new Vector2(0, 0), Color.White);
+            spriteBatch.Draw(menuBackGroundTexture, new Vector2(0, 0), Color.Purple);
             
 
             foreach (var component in components)

@@ -12,12 +12,14 @@ namespace AttackOnGerms.Game1Folder
 
         public static float rofUpgrade = 0.1F;
 
-        
+        public static Gift gift;
+
+        public static bool giftExists;
 
         public static void loadGameContent(GameTime gameTime)
         {
             Game1.shieldPosition = new Vector2(
-                540,
+                535,
                 1920); 
 
             Game1.gunPosition = new Vector2(
@@ -27,6 +29,8 @@ namespace AttackOnGerms.Game1Folder
             Game1.torretPosition = new Vector2(
                 540,
                 1920 - 50);
+
+            giftExists = false;
             //Controller.enemies.Capacity += 1;
             
             /*
@@ -41,6 +45,7 @@ namespace AttackOnGerms.Game1Folder
 
         public static void updateGame(GameTime gameTime)
         {
+            
             for (int j = 0; j < Controller.enemies.Count; j++)
             {
 
@@ -80,9 +85,17 @@ namespace AttackOnGerms.Game1Folder
                     if (Controller.enemies[j].hp <= 0)
                     {
                         Game1.enemyExplosionSound.Play();
+
+                        if (Controller.enemies[j].dropsGift)
+                        {
+                            gift = new Gift(Controller.enemies[j].position);
+                            giftExists = true;
+                        }
                         
+
                         Controller.enemies[j].dead = true;
-                        
+
+
                     }
                     if (timer <= 0) //
                     {
