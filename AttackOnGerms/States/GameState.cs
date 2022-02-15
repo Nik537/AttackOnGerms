@@ -104,6 +104,8 @@ namespace AttackOnGerms.States
                 System.Threading.Thread.Sleep(2000);
                 Lives.lives = 3;
                 Score.score = 0;
+                Lives.biggerBulletCount = 1;
+                Lives.moreGunsCount = 1;
                 Controller.first = true;
                 Controller.enemies.Clear();
                 Controller.timer = 2D;

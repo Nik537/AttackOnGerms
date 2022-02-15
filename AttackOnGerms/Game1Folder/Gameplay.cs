@@ -10,6 +10,8 @@ namespace AttackOnGerms.Game1Folder
     {
         public static double timer = 1D;
 
+        public static double flashTimer = 5D;
+
         public static float rofUpgrade = 0.1F;
 
         public static Gift gift;
@@ -77,11 +79,12 @@ namespace AttackOnGerms.Game1Folder
                     double distance = Vector2.Distance(Game1.controller.bullets[i].position, Controller.enemies[j].position);//Math.Sqrt(v.X * v.X + v.Y * v.Y);
                     if (distance <= (120)) { //35 + 206
                         Game1.controller.bullets[i].colidet = true;
-                        Controller.enemies[j].hp -= 1;
+                        Controller.enemies[j].hp -= Lives.biggerBulletCount;
                         Controller.enemies[j].color = Color.Red;
                         Score.score += 1;
                     }
                     timer -= gameTime.ElapsedGameTime.TotalSeconds + rofUpgrade;
+                    flashTimer -= gameTime.ElapsedGameTime.TotalSeconds;
                     if (Controller.enemies[j].hp <= 0)
                     {
                         Game1.enemyExplosionSound.Play();
@@ -100,6 +103,7 @@ namespace AttackOnGerms.Game1Folder
                     if (timer <= 0) //
                     {
                         Controller.enemies[j].color = Color.White;
+                        flashTimer = 5D;
                         timer = 5D;
                     }
                 }

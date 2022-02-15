@@ -22,11 +22,11 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
 
         public static bool first = true;
 
-        public static double yellowEnemyTimer = 24D;
-        public static double greenEnemyTimer = 4D;
-        public static double blueEnemyTimer = 12D;
+        public static double yellowEnemyTimer = 24D; //24
+        public static double greenEnemyTimer = 4D; //4
+        public static double blueEnemyTimer = 12D; //12
 
-        public static double maxYellowTime = 24D;
+        public static double maxYellowTime = 24D; //24
         public static double maxGreenTime = 4D;
         public static double maxBlueTime = 12D;
 
@@ -48,9 +48,38 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
             if (timer <= 0) //BULLETS
             {
                 soundEffect.Play();
-                var scaleX = Math.Sin(-1*gunRotation);
-                var scaleY = Math.Cos(-1*gunRotation);
-                bullets.Add(new Bullet(gunPosition, 1950, scaleX, scaleY));
+                if(Lives.moreGunsCount == 1)
+                {
+                    var scaleX = Math.Sin(-1 * gunRotation);
+                    var scaleY = Math.Cos(-1 * gunRotation);
+                    bullets.Add(new Bullet(gunPosition, 1950, scaleX, scaleY));
+                }
+                else if (Lives.moreGunsCount == 2)
+                {
+                    var scaleX = Math.Sin(-1 * (gunRotation + 0.1f));
+                    var scaleY = Math.Cos(-1 * (gunRotation + 0.1f));
+                    bullets.Add(new Bullet(gunPosition, 1950, scaleX, scaleY));
+
+                    var scaleX2 = Math.Sin(-1 * (gunRotation - 0.1f));
+                    var scaleY2 = Math.Cos(-1 * (gunRotation - 0.1f));
+                    bullets.Add(new Bullet(gunPosition, 1950, scaleX2, scaleY2));
+                }
+                else
+                {
+                    var scaleX0 = Math.Sin(-1 * (gunRotation + 0.2f));
+                    var scaleY0 = Math.Cos(-1 * (gunRotation + 0.2f));
+                    bullets.Add(new Bullet(gunPosition, 1950, scaleX0, scaleY0));
+
+                    var scaleX = Math.Sin(-1 * gunRotation);
+                    var scaleY = Math.Cos(-1 * gunRotation);
+                    bullets.Add(new Bullet(gunPosition, 1950, scaleX, scaleY));
+
+                    var scaleX2 = Math.Sin(-1 * (gunRotation - 0.2f));
+                    var scaleY2 = Math.Cos(-1 * (gunRotation - 0.2f));
+                    bullets.Add(new Bullet(gunPosition, 1950, scaleX2, scaleY2));
+                }
+
+
                 timer = 3D;
                 
             }
@@ -60,7 +89,7 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
                 enemies.Add(new YellowEnemy());
                 //yellowEnemyTimer = 12D;
                 yellowEnemyTimer = maxYellowTime;
-                if (maxYellowTime > 6)
+                if (maxYellowTime > 4)
                 {
                     maxYellowTime -= 0.05;
                 }
@@ -73,7 +102,7 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
                 greenEnemyTimer = maxGreenTime;
                 if (maxGreenTime > 1)
                 {
-                    maxGreenTime -= 0.05;
+                    maxGreenTime -= 0.025;
                 }
             }
 
@@ -82,9 +111,9 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
                 enemies.Add(new BlueEnemy());
                 //blueEnemyTimer = 6D;
                 blueEnemyTimer = maxBlueTime;
-                if (maxBlueTime > 2)
+                if (maxBlueTime > 1)
                 {
-                    maxBlueTime -= 0.05;
+                    maxBlueTime -= 0.2;
                 }
 
             }

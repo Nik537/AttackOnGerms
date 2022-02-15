@@ -32,8 +32,17 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
             for (int i = 0; i < Game1.controller.bullets.Count; i++)
             {
                 Vector2 tempPos = Game1.controller.bullets[i].position;
-                Game1._spriteBatch.Draw(Game1.atlas, tempPos, new Rectangle(1430, 214, 225, 225), Color.White, 0f,
-                new Vector2(225 / 2 + 20, 225 / 2), 0.1f, SpriteEffects.None, 0f);
+
+                if(Lives.biggerBulletCount == 1)
+                    Game1._spriteBatch.Draw(Game1.atlas, tempPos, new Rectangle(1430, 214, 225, 225), Color.White, 0f,
+                    new Vector2(225 / 2 + 20, 225 / 2), 0.075f, SpriteEffects.None, 0f);
+                else if(Lives.biggerBulletCount == 2)
+                    Game1._spriteBatch.Draw(Game1.atlas, tempPos, new Rectangle(1430, 214, 225, 225), Color.White, 0f,
+                    new Vector2(225 / 2 + 20, 225 / 2), 0.11f, SpriteEffects.None, 0f);
+                else
+                    Game1._spriteBatch.Draw(Game1.atlas, tempPos, new Rectangle(1430, 214, 225, 225), Color.White, 0f,
+                    new Vector2(225 / 2 + 20, 225 / 2), 0.15f, SpriteEffects.None, 0f);
+
             }
             //SHIELD
 
@@ -46,8 +55,28 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
             Game1._spriteBatch.Draw(Game1.atlas, Game1.shieldPosition, new Rectangle(770, 560, 1000, 1000), shieldColor, 0f,
                 new Vector2(1000 / 2 + 15, 1000 / 2), 2f, SpriteEffects.None, 0f);
             //GUN
-            Game1._spriteBatch.Draw(Game1.atlas, Game1.gunPosition, new Rectangle(1080, 0, 150, 260), Color.White, Game1.gunRotation,
+            if (Lives.moreGunsCount == 1)
+                Game1._spriteBatch.Draw(Game1.atlas, new Vector2(Game1.gunPosition.X, Game1.gunPosition.Y), new Rectangle(1080, 0, 150, 260), Color.White, Game1.gunRotation,
                 new Vector2(150 / 2, 260), 0.3f, SpriteEffects.None, 0f);
+            else if(Lives.moreGunsCount == 2)
+            {
+                Game1._spriteBatch.Draw(Game1.atlas, new Vector2(Game1.gunPosition.X, Game1.gunPosition.Y), new Rectangle(1080, 0, 150, 260), Color.White, Game1.gunRotation + 0.1f,
+                new Vector2(150 / 2, 260), 0.3f, SpriteEffects.None, 0f);
+
+                Game1._spriteBatch.Draw(Game1.atlas, new Vector2(Game1.gunPosition.X, Game1.gunPosition.Y), new Rectangle(1080, 0, 150, 260), Color.White, Game1.gunRotation - 0.1f,
+                new Vector2(150 / 2, 260), 0.3f, SpriteEffects.None, 0f);
+            }   
+            else
+            {
+                Game1._spriteBatch.Draw(Game1.atlas, new Vector2(Game1.gunPosition.X, Game1.gunPosition.Y), new Rectangle(1080, 0, 150, 260), Color.White, Game1.gunRotation,
+                new Vector2(150 / 2, 260), 0.3f, SpriteEffects.None, 0f);
+
+                Game1._spriteBatch.Draw(Game1.atlas, new Vector2(Game1.gunPosition.X, Game1.gunPosition.Y), new Rectangle(1080, 0, 150, 260), Color.White, Game1.gunRotation + 0.2f,
+                new Vector2(150 / 2, 260), 0.3f, SpriteEffects.None, 0f);
+
+                Game1._spriteBatch.Draw(Game1.atlas, new Vector2(Game1.gunPosition.X, Game1.gunPosition.Y), new Rectangle(1080, 0, 150, 260), Color.White, Game1.gunRotation - 0.2f,
+                new Vector2(150 / 2, 260), 0.3f, SpriteEffects.None, 0f);
+            }     
             //TORRET
             Game1._spriteBatch.Draw(Game1.atlas, Game1.torretPosition, new Rectangle(12, 20, 891, 589), Color.White, 0f,
                 new Vector2(891 / 2, 589 / 2), 0.25f, SpriteEffects.None, 0f);
@@ -84,6 +113,16 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
                 {
                     Game1._spriteBatch.Draw(Game1.atlas, Gameplay.gift.position, new Rectangle(470, 2790, 280, 280), Color.White, 0,
                         new Vector2(280 / 2, 280 / 2), 0.5f, SpriteEffects.None, 0f);
+                }
+                else if (Gameplay.gift.moreGuns)
+                {
+                    Game1._spriteBatch.Draw(Game1.atlas, Gameplay.gift.position, new Rectangle(470, 2150, 280, 280), Color.Magenta, 0,
+                        new Vector2(280 / 2, 280 / 2), 0.5f, SpriteEffects.None, 0f);
+                }
+                else if (Gameplay.gift.biggerBullet)
+                {
+                    Game1._spriteBatch.Draw(Game1.atlas, Gameplay.gift.position, new Rectangle(470, 2150, 280, 280), Color.MonoGameOrange, 0,
+                        new Vector2(280 / 2, 280 / 2), 0.5f, SpriteEffects.None, 0f); //monogame orange
                 }
                 else
                 {

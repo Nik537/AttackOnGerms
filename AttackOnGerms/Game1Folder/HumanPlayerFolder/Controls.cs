@@ -35,9 +35,24 @@ namespace AttackOnGerms.Game1Folder.HumanPlayerFolder
                             {
                                 Lives.lives++;
                                 Gameplay.gift.isOn = false;
-                            } else
+                            }
+                            else if (Gameplay.gift.moreGuns)
                             {
-                                Controller.rofUpgrade += 0.01f;
+                                Lives.moreGunsCount++;
+                                Controller.rofUpgrade /= 1.35f;
+
+                                Gameplay.gift.isOn = false;
+                            }
+                            else if (Gameplay.gift.biggerBullet)
+                            {
+                                Lives.biggerBulletCount++;
+                                Controller.rofUpgrade /= 1.35f;
+
+                                Gameplay.gift.isOn = false;
+                            }
+                            else
+                            {
+                                Controller.rofUpgrade += (0.01f/Lives.moreGunsCount / Lives.biggerBulletCount);
                                 Gameplay.gift.isOn = false;
                             }
                         }

@@ -59,6 +59,8 @@ namespace AttackOnGerms
         private State _currentState;
         private State _nextState;
 
+        
+
         //public static Texture2D blueEnemytex;
 
 
@@ -122,7 +124,13 @@ namespace AttackOnGerms
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _currentState = new MenuState(this, GraphicsDevice, Content);
+            if (Int32.Parse(Load()) == 0)
+            {
+                _currentState = new IntroState(this, GraphicsDevice, Content);
+                
+            }
+            else _currentState = new MenuState(this, GraphicsDevice, Content);
+
             _currentState.LoadContent();
             _nextState = null;
         }

@@ -14,6 +14,8 @@ namespace AttackOnGerms.States
     {
         public static int score = 0;
 
+        
+
         public static SpriteFont scorefont;
 
         public Score(SpriteFont font)

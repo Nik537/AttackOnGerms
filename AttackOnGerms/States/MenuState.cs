@@ -97,7 +97,9 @@ namespace AttackOnGerms.States
             spriteBatch.Begin(transformMatrix: Game1.matrix);
 
             spriteBatch.Draw(menuBackGroundTexture, new Vector2(0, 0), Color.Purple);
+
             
+
 
             foreach (var component in components)
                 component.Draw(gameTime, spriteBatch);

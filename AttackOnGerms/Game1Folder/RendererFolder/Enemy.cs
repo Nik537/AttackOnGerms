@@ -60,9 +60,9 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
         public YellowEnemy()
         {
             Random rand = new Random();
-            position = new Vector2(rand.Next(100, 1080-100), -100);
+            position = new Vector2(rand.Next(100, 1080-100), -80);
             speed = 40;
-            hp = 26;
+            hp = 26; //26
             dropsGift = true;
             radius = 206;
             rotation = 0;
@@ -96,9 +96,9 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
         public BlueEnemy()
         {
             Random rand = new Random();
-            position = new Vector2(rand.Next(100, 1080 - 200), -100);
+            position = new Vector2(rand.Next(100, 1080 - 200), -70);
             speed = 90;
-            hp = 10;
+            hp = 11;
             dropsGift = false;
             radius = 206;
             rotation = 0;
@@ -141,9 +141,9 @@ namespace AttackOnGerms.Game1Folder.RendererFolder
         public GreenEnemy()
         {
             Random rand = new Random();
-            position = new Vector2(rand.Next(50, 1080 - 50), -100);
-            speed = 140;
-            hp = 3;
+            position = new Vector2(rand.Next(50, 1080 - 50), -50);
+            speed = 115;
+            hp = 5;
             dropsGift = false;
             radius = 206;
             rotation = 0;
